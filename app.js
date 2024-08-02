@@ -29,11 +29,15 @@ function handleSymbol(symbol) {
             console.log('equals');
             break;
         case '←':
-            console.log('back arrow');
+            if (buffer.length === 1) {
+                buffer = '0';
+            } else {
+                buffer = buffer.substring(0, buffer.length - 1);
+            }
             break;
         case '+':
         case '-':
-        case 'x':
+        case '×':
         case '÷':
             console.log('math symbol');
             break;
