@@ -1,6 +1,6 @@
-let buffer = '0';
-let runningTotal = 0;
-let previousOperator;
+let buffer = '0'; // to keep track of what is on the screen
+let runningTotal = 0; // to keep track of all the math
+let previousOperator = null;
 const screen = document.querySelector('.screen');
 
 // Creating function to handle button click event
@@ -37,7 +37,6 @@ function handleMath(value) {
 
     previousOperator = value;
     buffer = '0';
-    console.log(runningTotal);
 }
 
 function flushOperation(intBuffer) {
@@ -58,7 +57,14 @@ function handleSymbol(symbol) {
             buffer = '0';
             break;
         case '=':
-            console.log('equals');
+            if (previousOperator === null) {
+                // need two numbers to do math
+                return;
+            }
+            flushOperation(parseInt(buffer));
+            previousOperator = null;
+            buffer = "" + runningTotal; // converting the number to string
+            runningTotal = 0;
             break;
         case '←':
             if (buffer.length === 1) {
