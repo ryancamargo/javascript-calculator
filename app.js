@@ -21,7 +21,23 @@ function handleNumber(number) {
 }
 
 function handleSymbol(symbol) {
-    console.log('symbol');
+    switch (symbol) {
+        case 'C':
+            buffer = '0';
+            break;
+        case '=':
+            console.log('equals');
+            break;
+        case '←':
+            console.log('back arrow');
+            break;
+        case '+':
+        case '-':
+        case 'x':
+        case '÷':
+            console.log('math symbol');
+            break;
+    }
 }
 
 // Adding event listener to the buttons in the calculator
