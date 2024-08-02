@@ -1,3 +1,6 @@
+let buffer = '0';
+const screen = document.querySelector('.screen');
+
 // Creating function to handle button click event
 // And checking if the button clicked is a number or a symbol
 function buttonClick(value) {
@@ -6,10 +9,15 @@ function buttonClick(value) {
     } else {
         handleNumber(value);
     }
+    rerender();
 }
 
 function handleNumber(number) {
-    console.log('number');
+    if (buffer === '0') {
+        buffer = number;
+    } else {
+        buffer += number;
+    }
 }
 
 function handleSymbol(symbol) {
@@ -23,6 +31,10 @@ function init() {
         .addEventListener("click", function(event) {
             buttonClick(event.target.innerText);
         });
+}
+
+function rerender() {
+    screen.innerText = buffer;
 }
 
 init();
